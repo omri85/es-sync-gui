@@ -1,0 +1,16 @@
+extends /layout
+block content 
+    h1 New Connector
+    form(action="post" class="mb-3")
+        .mb-3
+            label(for="name") Connection Name
+            input(type="text" id="name" class="form-control")
+        .mb-3
+            label(for="") Host
+            input(type="text" class="form-control")
+        .mb-3
+            label(for="") Port
+            input(type="number" class="form-control")
+        .mb-3
+            button(class="btn btn-outline-secondary") Test connection
+            button(type="submit" class="btn btn-primary") Save
