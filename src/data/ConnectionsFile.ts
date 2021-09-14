@@ -31,7 +31,7 @@ export default class ConnectionsFile implements IConnectionsFile {
   getAllConnections(): Connection[] {
     const res = Object.keys(this.connections).map((name) => {
       const { host, port, username, password } = this.connections[name];
-      return new Connection(name, host, port, username, password);
+      return new Connection("", name, host, port, username, password);
     });
     return res;
   }

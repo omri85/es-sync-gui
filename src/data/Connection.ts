@@ -1,4 +1,5 @@
 interface IConnection {
+  type: string;
   host: string;
   port: number;
   username?: string;
@@ -6,14 +7,16 @@ interface IConnection {
 }
 
 export default class Connection implements IConnection {
+  type: string;
   name: string;
   host: string;
   port: number;
   username?: string;
   password?: string;
 
-  constructor(name: string, host: string, port: number);
+  constructor(type: string, name: string, host: string, port: number);
   constructor(
+    type: string,
     name: string,
     host: string,
     port: number,
@@ -21,19 +24,14 @@ export default class Connection implements IConnection {
     password?: string
   );
   constructor(
-    name: string,
-    host: string,
-    port: number,
-    username?: string,
-    password?: string
-  );
-  constructor(
+    type: string,
     name: string,
     host: string,
     port: number,
     username?: string,
     password?: string
   ) {
+    this.type = type;
     this.name = name;
     this.host = host;
     this.port = port;

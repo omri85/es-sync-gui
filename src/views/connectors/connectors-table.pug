@@ -10,8 +10,9 @@ table.table
                 th Actions
         tbody 
             tr
-                td MySQL 
-                td My MySQL connector
-                td.icons
-                    +delete-icon(1)
-                    +edit-icon(1)
+                for connection in connections
+                    td #{connection.name}
+                    td #{connection.host}
+                    td.icons
+                        +delete-icon(1)
+                        +edit-icon(1)

@@ -16,8 +16,15 @@ export function getConnection(req: Request, res: Response, next: NextFunction) {
 
 export function addConnection(req: Request, res: Response, next: NextFunction) {
   try {
-    const { name, host, port, username, password } = req.body;
-    const connection = new Connection(name, host, port, username, password);
+    const { type, name, host, port, username, password } = req.body;
+    const connection = new Connection(
+      type,
+      name,
+      host,
+      port,
+      username,
+      password
+    );
     const connectionsFile = new ConnectionsFile();
     connectionsFile.addConnection(connection);
     res.sendStatus(204);
