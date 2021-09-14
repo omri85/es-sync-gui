@@ -21,9 +21,14 @@
 
 #content {
   width: 80%;
+  margin-top: 1rem;
 }
 
 .icons svg {
   margin-right: 1rem;
   cursor: pointer;
+}
+
+.buttons button {
+  margin-right: 1rem;
 }

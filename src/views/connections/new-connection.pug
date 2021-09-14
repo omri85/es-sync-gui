@@ -1,0 +1,22 @@
+extends /layout
+block content 
+    h1 New Connector
+    form(action="/api/connection" method="POST" class="mb-3 needs-validation")
+        .mb-3
+            label(for="type") Connection Type
+            select(class="form-select" id="type")
+                //- option(value="mysql") MySQL 
+                option(value="postgres") Postgres 
+                option(value="es") Elasticsearch 
+        .mb-3
+            label(for="name") Connection Name
+            input(type="text" id="name" name="name" class="form-control" required)
+        .mb-3
+            label(for="host") Host
+            input(type="text" id="host" name="host" class="form-control" required)
+        .mb-3
+            label(for="port") Port
+            input(type="number" id="port" name="port" class="form-control" required)
+        .buttons
+            button(type="button" class="btn btn-outline-secondary") Test connection
+            button(type="submit" class="btn btn-primary") Save

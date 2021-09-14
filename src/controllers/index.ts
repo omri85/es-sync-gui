@@ -1,3 +1,2 @@
-import * as connectionsController from "./connectionsController";
-
-export const connectionController = connectionsController;
+export * as api from "./api";
+export * as connectionsController from "./connectionsController";

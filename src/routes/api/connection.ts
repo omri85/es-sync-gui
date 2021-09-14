@@ -1,10 +1,10 @@
 import express from "express";
-import { connectionController } from "../../controllers";
+import { connectionsApiController } from "../../controllers/api";
 
 const router = express.Router();
 
-router.get("/:name", connectionController.getConnection);
-router.get("/", connectionController.getAllConnections);
-router.post("/", connectionController.addConnection);
+router.get("/:name", connectionsApiController.getConnection);
+router.get("/", connectionsApiController.getAllConnections);
+router.post("/", connectionsApiController.addConnection);
 
 module.exports = router;

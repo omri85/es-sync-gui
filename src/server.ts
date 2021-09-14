@@ -10,6 +10,7 @@ app.set("view engine", "pug");
 app.locals.basedir = app.get("views");
 
 app.use(express.json());
+app.use(express.urlencoded());
 
 app.get("/", (req, res) => {
   res.render("index", { hello: "World" });
