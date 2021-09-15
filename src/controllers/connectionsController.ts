@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import ConnectionsStore from "../data/stores/ConnectionsStore";
+import { ConnectionsStore } from "../data/stores";
 
 export function getConnectionsView(
   req: Request,

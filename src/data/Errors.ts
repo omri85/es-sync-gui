@@ -1,1 +1,1 @@
-export class ConnectionExistsError extends Error {}
+export class DuplicateRecordError extends Error {}

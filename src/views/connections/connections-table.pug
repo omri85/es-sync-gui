@@ -9,10 +9,10 @@ table.table
                 th Name
                 th Actions
         tbody 
-            tr
-                for connection in connections
+            for connection in connections
+                tr
+                    td #{connection.type}
                     td #{connection.name}
-                    td #{connection.host}
                     td.icons
                         +delete-icon(1)
                         +edit-icon(1)

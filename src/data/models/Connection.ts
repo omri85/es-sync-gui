@@ -1,4 +1,7 @@
-interface IConnection {
+import BaseDataStoreModel from "./BaseDataStoreModel";
+import IDataStoreModel from "./BaseDataStoreModel";
+
+interface IConnection extends IDataStoreModel {
   type: string;
   host: string;
   port: number;
@@ -6,7 +9,11 @@ interface IConnection {
   password?: string;
 }
 
-export default class Connection implements IConnection {
+export default class Connection
+  extends BaseDataStoreModel
+  implements IConnection
+{
+  id: string;
   type: string;
   name: string;
   host: string;
@@ -14,23 +21,24 @@ export default class Connection implements IConnection {
   username?: string;
   password?: string;
 
-  constructor(type: string, name: string, host: string, port: number);
+  constructor();
   constructor(
-    type: string,
-    name: string,
-    host: string,
-    port: number,
+    type?: string,
+    name?: string,
+    host?: string,
+    port?: number,
     username?: string,
     password?: string
   );
   constructor(
-    type: string,
-    name: string,
-    host: string,
-    port: number,
+    type?: string,
+    name?: string,
+    host?: string,
+    port?: number,
     username?: string,
     password?: string
   ) {
+    super();
     this.type = type;
     this.name = name;
     this.host = host;

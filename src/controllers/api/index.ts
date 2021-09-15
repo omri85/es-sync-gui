@@ -1,1 +1,3 @@
-export * as connectionsApiController from "./connectionsApiController";
+import ConnectionsApiController from "./ConnectionsApiController";
+
+export { ConnectionsApiController };

@@ -1,4 +1,4 @@
 import Connection from "./Connection";
-import Sync from "./Sync";
+import Operation from "./Operation";
 
-export { Connection, Sync };
+export { Connection, Operation };

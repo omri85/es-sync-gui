@@ -1,9 +1,8 @@
 import express from "express";
-import { ConnectionsApiController } from "../../controllers/api";
+import OperationsApiController from "../../controllers/api/OperationsApiController";
 
 const router = express.Router();
-const controller = new ConnectionsApiController();
-// controller.create.bind(controller);
+const controller = new OperationsApiController();
 
 router.get("/:id", controller.get.bind(controller));
 router.get("/", controller.getAll.bind(controller));
