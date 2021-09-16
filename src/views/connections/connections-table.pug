@@ -14,5 +14,5 @@ table.table
                     td #{connection.type}
                     td #{connection.name}
                     td.icons
-                        +delete-icon(1)
-                        +edit-icon(1)
+                        +delete-icon(connection.id)
+                        +edit-icon(connection.id)

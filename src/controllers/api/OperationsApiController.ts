@@ -6,6 +6,7 @@ export default class OperationsApiController extends BaseApiController<
   Operation,
   OperationsStore
 > {
+  homeView = "/operations";
   constructor() {
     super();
   }

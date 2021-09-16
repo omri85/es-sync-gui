@@ -13,7 +13,7 @@ export function getConnectionsView(
   });
 }
 
-export function getNetConnectionView(
+export function getNewConnectionView(
   req: Request,
   res: Response,
   next: NextFunction

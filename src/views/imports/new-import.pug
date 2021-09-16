@@ -1,0 +1,22 @@
+extends /layout
+
+block content
+    form(action="/api/operations" method="POST" class="needs-validation")
+        .row.justify-content-between
+            .col-5
+                h6 Origin
+                select(class="form-select" name="origin" required)
+                    for origin in origins
+                        option(value=origin.id) #{origin.name}
+                label(for="table") Table
+                input(class="form-control" type="text" name="table" required)
+            .col-1.align-self-center
+                include /icons/arrow-right
+            .col-5
+                h6 Target
+                select(class="form-select" name="target" required)
+                    for target in targets
+                        option(value=target.id) #{target.name}
+                label(for="index") Index
+                input(class="form-control" type="text" name="index" required)
+        button(class="btn btn-primary" type="submit") Start

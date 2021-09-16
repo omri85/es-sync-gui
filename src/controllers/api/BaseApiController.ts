@@ -7,10 +7,12 @@ interface IApiController<
   TModel extends BaseDataStoreModel,
   TStore extends BaseDataStore<TModel>
 > {
+  homeView: string;
   getStore(): TStore;
-  get(req: Request, res: Response, next: NextFunction);
-  getAll(req: Request, res: Response, next: NextFunction);
-  create(req: Request, res: Response, next: NextFunction);
+  get(req: Request, res: Response, next: NextFunction): void;
+  getAll(req: Request, res: Response, next: NextFunction): void;
+  create(req: Request, res: Response, next: NextFunction): void;
+  delete(req: Request, res: Response, next: NextFunction): void;
 }
 
 export abstract class BaseApiController<
@@ -18,6 +20,7 @@ export abstract class BaseApiController<
   TStore extends BaseDataStore<TModel>
 > implements IApiController<TModel, TStore>
 {
+  abstract homeView: string;
   abstract getStore(): TStore;
   get(req: Request, res: Response, next: NextFunction) {
     try {
@@ -43,14 +46,24 @@ export abstract class BaseApiController<
   create(req: Request, res: Response, next: NextFunction) {
     try {
       const store = this.getStore();
-      const connection = Object.assign(store.createInstance(), req.body);
-      store.add(connection);
-      res.redirect("/connections");
-      // res.sendStatus(204);
+      const instances = Object.assign(store.createInstance(), req.body);
+      store.add(instances);
+      res.redirect(this.homeView);
     } catch (err) {
       if (err instanceof DuplicateRecordError) {
         res.status(400).send("Connection already exists");
       }
+      next(err);
+    }
+  }
+
+  delete(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const store = this.getStore();
+      store.remove(id);
+      res.sendStatus(204);
+    } catch (err) {
       next(err);
     }
   }

@@ -4,7 +4,7 @@ import config from "../../config";
 
 export default class OperationsStore extends BaseDataStore<Operation> {
   constructor() {
-    super(config.syncsFilePath);
+    super(config.operationsFilePath);
   }
   createInstance() {
     return new Operation();

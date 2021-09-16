@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "nodemon src/server.ts",
-    "build": "tsc",
+    "build": "npm run clean & tsc && npm run copy-files",
+    "clean": "rmdir /s /q dist",
+    "copy-files": "xcopy /I /E src\\views dist\\views",
     "start": "node ."
   },
   "keywords": [],

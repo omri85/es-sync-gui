@@ -1,12 +1,15 @@
 import { NextFunction, Request, Response } from "express";
-import ConnectionsStore from "../data/stores/ConnectionsStore";
+import { OperationsStore, ConnectionsStore } from "../data/stores";
 
 export function getSyncsView(req: Request, res: Response, next: NextFunction) {
-  // const connectionsFile = new ConnectionsStore();
-  // const connections = connectionsFile.getAllConnections();
-  // res.render("connections/connections", {
-  //   connections,
-  // });
+  const store = new OperationsStore();
+  const syncs = store.getAll().filter((o) => o.type == "sync");
+  const connectionsStore = new ConnectionsStore();
+  syncs.forEach((sync) => {
+    sync["origin"] = connectionsStore.get(sync.originId) || { name: "unknown" };
+    sync["target"] = connectionsStore.get(sync.targetId) || { name: "unknown" };
+  });
+  res.render("syncs/syncs", { syncs });
 }
 
 export function getNetConnectionView(
@@ -14,5 +17,5 @@ export function getNetConnectionView(
   res: Response,
   next: NextFunction
 ) {
-  res.render("connections/new-connection");
+  res.render("syncs/syncs");
 }

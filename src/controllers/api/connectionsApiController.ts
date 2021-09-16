@@ -6,6 +6,7 @@ export default class ConnectionsApiController extends BaseApiController<
   Connection,
   ConnectionsStore
 > {
+  homeView: string = "/connections";
   constructor() {
     super();
   }

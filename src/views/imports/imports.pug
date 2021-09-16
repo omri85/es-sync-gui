@@ -3,7 +3,7 @@ include /icons/edit-icon
 include /icons/delete-icon
 
 block content
-    button(class="btn btn-primary" onclick="location.href='/sync/new'") Add
+    button(class="btn btn-primary" onclick="location.href='/imports/new'") Add
     table.table
             thead
                 tr
@@ -14,11 +14,11 @@ block content
                     th Actions
             tbody 
                 tr
-                    for sync in syncs
-                        td #{sync.origin.name}
-                        td #{sync.target.name}
-                        td #{sync.start.toLocaleString()}
-                        td #{sync.end ? sync.end.toLocaleString() : ""}
+                    for i in imports
+                        td #{i.origin.name}
+                        td #{i.target.name}
+                        td #{i.start.toLocaleString()}
+                        td #{i.end ? i.end.toLocaleString() : ""}
                         td.icons
                             +delete-icon(1)
                             +edit-icon(1)
