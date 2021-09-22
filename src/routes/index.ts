@@ -1,5 +1,4 @@
 import express from "express";
-import ConnectionsStore from "../data/stores/ConnectionsStore";
 
 const router = express.Router();
 

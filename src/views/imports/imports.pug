@@ -15,8 +15,8 @@ block content
             tbody 
                 tr
                     for i in imports
-                        td #{i.origin.name}
-                        td #{i.target.name}
+                        td #{i.originConnection.name}
+                        td #{i.targetConnection.name}
                         td #{i.start.toLocaleString()}
                         td #{i.end ? i.end.toLocaleString() : ""}
                         td.icons

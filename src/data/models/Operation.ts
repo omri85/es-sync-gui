@@ -1,41 +1,34 @@
+import { Connection } from ".";
+import { ConnectionsStore } from "../stores";
 import BaseDataStoreModel from "./BaseDataStoreModel";
+import OperationStatus from "./OperationStatus";
 
-interface IOperation {
-  originId: string;
-  targetId: string;
+class Operation extends BaseDataStoreModel {
+  id: string;
   type: "import" | "sync";
-  start: Date;
-  end: Date;
-  complete(): void;
-}
+  start?: Date;
+  end?: Date;
+  originConnection: Connection;
+  targetConnection: Connection;
+  originDatabase: string;
+  targetIndex: string;
+  originTable: string;
+  pid?: number;
+  status: OperationStatus;
 
-export default class Operation
-  extends BaseDataStoreModel
-  implements IOperation
-{
-  /**
-   * Origin connection name
-   */
-  originId: string;
-  /**
-   * Target connection name
-   */
-  targetId: string;
-  type: "import" | "sync";
-  start: Date;
-  end: Date;
-
-  constructor();
-  constructor(type?: "import" | "sync", originId?: string, targetId?: string) {
+  constructor(options?) {
     super();
-    this.type = type;
-    this.originId = originId;
-    this.targetId = targetId;
-    this.start = new Date();
-    this.end = null;
-  }
-
-  complete() {
-    this.end = new Date();
+    if (options) {
+      const store = new ConnectionsStore();
+      this.originConnection = store.get(options.originConnectionId);
+      this.targetConnection = store.get(options.targetConnectionId);
+      this.type = options.type;
+      this.originTable = options.originTable;
+      this.originDatabase = options.originDatabase;
+      this.targetIndex = options.targetIndex;
+      this.status = OperationStatus.Ready;
+    }
   }
 }
+
+export default Operation;

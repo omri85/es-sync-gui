@@ -1,7 +1,8 @@
 import express from "express";
 import * as path from "path";
 import router from "./routes";
-
+import { LogstashRunner } from "./logstash";
+LogstashRunner.test();
 const app = express();
 const port = 3000;
 

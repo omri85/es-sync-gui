@@ -8,11 +8,6 @@ export function getImportsView(
 ) {
   const store = new OperationsStore();
   const imports = store.getAll().filter((o) => o.type == "import");
-  const connectionsStore = new ConnectionsStore();
-  imports.forEach((i) => {
-    i["origin"] = connectionsStore.get(i.originId) || { name: "unknown" };
-    i["target"] = connectionsStore.get(i.targetId) || { name: "unknown" };
-  });
   res.render("imports/imports", { imports });
 }
 
